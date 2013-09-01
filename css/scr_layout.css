@@ -1,0 +1,43 @@
+#wrap_top	{
+	border-bottom: 1px solid #aaa;
+	padding: 20px 0px;
+	height: 60px;
+}
+
+#top	{
+	width: 960px;	
+	height: 100%;	
+	margin: 0px auto 20px auto;
+	vertical-align: text-top;
+}
+
+#wrapper	{
+	width: 960px;
+	margin: 0 auto;
+}
+
+#banner 	{
+	height: 200px;
+}
+
+#content 	{
+	min-height: 500px;
+}
+
+#wrap_footer	{
+	border-top: 1px solid #aaa;
+	background-color: #fff;
+}
+	
+#footer	{
+	width: 960px;	
+	margin: 20px auto;
+}
+
+#user	{
+	float:left;
+}
+
+#copyright	{
+	float: right;
+}	
