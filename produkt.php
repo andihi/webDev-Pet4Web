@@ -1,5 +1,5 @@
 <?php
-    include 'dbconnection.php';
+    require_once 'util.php';
     $connection = createDbConnection();
 	
 	if (!isset($_GET['ID']))	{
