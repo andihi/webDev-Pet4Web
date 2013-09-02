@@ -13,6 +13,6 @@
 			<li><a href="index.php?section=admin">Administrator</a></li>
 			*/
 		?>
-		<li><a href="index.php?section=xxx">Login</a></li>
+		<li><a href="index.php?section=user">Login</a></li>
 	</ul>
 </div>

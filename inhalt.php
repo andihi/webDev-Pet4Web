@@ -1,4 +1,7 @@
 <?php
+session_start();
+include 'util.php';
+
     // die Datei inhalt.php
     
     if(isset($_GET['section'])) {
