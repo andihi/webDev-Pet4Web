@@ -6,7 +6,7 @@
             case "produkt":
                 include "produkt.php";
                 break;
-
+				
             case "kategorie":
                 include "kategorie.php";
                 break;
