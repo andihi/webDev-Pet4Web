@@ -1,17 +1,42 @@
-<html>
-    <head>
-        <title>pet4web</title>
-        <link rel="stylesheet" type="text/css" href="css/scr_layout.css"  media="screen" />
-		<link rel="stylesheet" type="text/css" href="css/scr_style.css"  media="screen" />
-    </head>
-    <body>
-    <?php
-    include 'dbconnection.php';
-    include 'session.php';
+<?php
+
+require_once 'util.php';
+
+if(isset($_GET['section']))
+    $section = $_GET['section'];
+else
+    $section ='non';
+
+if($section == 'tryToLogIn')
+{ 
+    @session_start();    
+    if(isset($_POST['email']) && isset($_POST['password']))
+    {        
+        logIn($_POST['email'],$_POST['password']);
+        if(isUserLoggedIn())
+        {
+            header("Location: ./index.php");
+            exit;
+        }
+        
+    }
+}
+
+if(isUserLoggedIn())
+{
+    echo "user is logged in...";
+    //TODO edit user name and pwd and so on...
+}
+else
+{
+    // show log in form with link to create new account...
+    echo "<form action = './user.php?section=tryToLogIn' method='post' >";
+    echo "email: <input type='text' name='email'><br />";
+    echo " passwort: <input type='password' name='password'>";
+    echo "<input type='submit' value ='log in' />";
+    echo "</form>";
     
-    logIn('j.d@pet4web.at','527bd5b5d689e2c32ae974c6229ff785');
-    
-    include 'footer.php';
-    ?>
-    </body>
-</html>
+    echo "<a href='createNewUser.php'>Neuen account erstellen...</a>";
+}
+
+?>
