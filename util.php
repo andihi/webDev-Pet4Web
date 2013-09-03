@@ -3,7 +3,7 @@
 function logIn($email, $password)
 {
     $connection = createDbConnection();    
-    $sqlQuery =sprintf("SELECT id, firstname, lastname, email FROM customer where email='%s' and password ='%s'",mysql_real_escape_string($email),mysql_real_escape_string($password));    
+    $sqlQuery =sprintf("SELECT id, firstname, lastname, email FROM customer where email='%s' and password ='%s'",mysql_real_escape_string($email),mysql_real_escape_string(md5($password)));    
     $result = mysql_query($sqlQuery, $connection);
     
     if (!$result)
