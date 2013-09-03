@@ -5,6 +5,7 @@
 	
 	// if GET passed an ID: only 1 product is shown
 	// if GET passed an Category-ID: only the products of the category are shown
+	// if GET passed an search: only the products with matched productname are shown
 	// else all products are shown
 	
 	if (!isset($_GET['ID']))	{
