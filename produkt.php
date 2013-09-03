@@ -1,11 +1,28 @@
 <?php
     require_once 'util.php';
+
     $connection = createDbConnection();
 	
+	// if GET passed an ID: only 1 product is shown
+	// if GET passed an Category-ID: only the products of the category are shown
+	// else all products are shown
+	
 	if (!isset($_GET['ID']))	{
-		$sqlQuery =sprintf("SELECT ID, name, description, picture, price, productcode, category_ID FROM product"); 
+		if (!isset($_GET['catid']))	{
+			if(!isset($_GET['search']))	{			
+				$sqlQuery ="SELECT product.ID, product.name, product.description, product.picture, product.price, product.productcode, category.name as cat_name FROM product ".
+									"inner join category on product.category_id = category.id"; 
+			} else	{
+				$sqlQuery = "SELECT product.ID, product.name, product.description, product.picture, product.price, product.productcode, category.name as cat_name FROM product ".
+								"inner join category on product.category_id = category.id where UPPER(product.name) like UPPER('%".$_GET['search']."%')"; 
+			}
+		} else	{
+			$sqlQuery = "SELECT product.ID, product.name, product.description, product.picture, product.price, product.productcode, category.name as cat_name FROM product ".
+								"inner join category on product.category_id = category.id where category_ID = ".$_GET['catid']; 
+		}
 	} else	{
-		$sqlQuery =sprintf("SELECT ID, name, description, picture, price, productcode, category_ID FROM product where ID = ".$_GET['ID']); 
+		$sqlQuery = "SELECT product.ID, product.name, product.description, product.picture, product.price, product.productcode, product.category_ID ".
+							"FROM product where product.ID = ".$_GET['ID']; 
 	}	
     
     $result = mysql_query($sqlQuery, $connection);
@@ -26,17 +43,18 @@
 			echo '<td>'.$row['description'].'</td>';
 			echo '<td>'.$row['price'].'&euro;</td>';
 			echo '<td>'.$row['productcode'].'</td>';
-			echo '<td>'.$row['category_ID'].'</td>';
+			echo '<td>'.$row['cat_name'].'</td>';
+			echo '</tr>';
 		}
 	} else {
 	
 		while($row = mysql_fetch_array($result))	{
 
-			echo $row['ID']."</br>";
-			echo $row['name']."</br>";
-			echo $row['description']."</br>";
-			echo $row['price']."</br>";
-			echo $row['productcode']."</br>";
+			echo $row['ID'].'</br>';
+			echo $row['name'].'</br>';
+			echo $row['description'].'</br>';
+			echo $row['price'].'</br>';
+			echo $row['productcode'].'</br>';
 		
 		}
 	}
