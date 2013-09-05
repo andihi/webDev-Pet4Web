@@ -3,6 +3,10 @@
         <title>pet4web</title>
         <link rel="stylesheet" type="text/css" href="css/scr_layout.css"  media="screen" />
 		<link rel="stylesheet" type="text/css" href="css/scr_style.css"  media="screen" />
+		<?php
+			require_once 'util.php';
+			session_start();
+		?>
     </head>
     <body>
 

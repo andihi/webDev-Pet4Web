@@ -6,9 +6,21 @@
 
 #top	{
 	width: 960px;	
-	height: 100%;	
 	margin: 0px auto 20px auto;
 	vertical-align: text-top;
+}
+
+#logo	{
+	float:left;
+}
+
+#search	{
+	float:left;
+	margin: 10px 0 0 100px;
+}
+
+#menu	{
+	float:right;
 }
 
 #wrapper	{
