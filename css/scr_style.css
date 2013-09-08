@@ -86,3 +86,20 @@ a:focus { text-decoration:none; font-weight:bold; color: #0C304A;}
 	font-weight: bold;
 	
 }
+
+form label, form input {
+    display:block;
+    min-width: 20px;
+}
+
+form section div {
+    margin-top:10px;
+}
+
+form section div input {
+    margin-top: 3px;
+}
+
+.wrongInput {
+    border: 1px solid red;
+}

@@ -7,10 +7,10 @@ require_once 'util.php';
 
 if(isUserLoggedIn() &&  isset($_SESSION['firstname']) && isset($_SESSION['lastname']))
 {
-    $name = '<a href="index.php?section=user">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a>';
+    $name = '<a href="user.php?section=changeSettings">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a>';
 }
 else
-    $name = '<a href="login.php?section=user">GAST</a>';
+    $name = '<a href="user.php?section=login">GAST</a>';
 
 print($name);
 

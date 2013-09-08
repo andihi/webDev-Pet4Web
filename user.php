@@ -1,42 +1,39 @@
-<?php
+<html>
+    <head>
+        <title>pet4web</title>
+        <link rel="stylesheet" type="text/css" href="css/scr_layout.css"  media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/scr_style.css"  media="screen" />
+		<?php
+        require_once 'util.php';
+        session_start();
+		?>
+    </head>
+    <body>
 
-require_once 'util.php';
-
-if(isset($_GET['section']))
-    $section = $_GET['section'];
-else
-    $section ='non';
-
-if($section == 'tryToLogIn')
-{ 
-    @session_start();    
-    if(isset($_POST['email']) && isset($_POST['password']))
-    {        
-        logIn($_POST['email'],$_POST['password']);
-        if(isUserLoggedIn())
-        {
-            header("Location: ./index.php");
-            exit;
-        }
-        
-    }
-}
-
-if(isUserLoggedIn())
-{
-    echo "user is logged in...";
-    //TODO edit user name and pwd and so on...
-}
-else
-{
-    // show log in form with link to create new account...
-    echo "<form action = './user.php?section=tryToLogIn' method='post' >";
-    echo "email: <input type='text' name='email'><br />";
-    echo " passwort: <input type='password' name='password'>";
-    echo "<input type='submit' value ='log in' />";
-    echo "</form>";
-    
-    echo "<a href='createNewUser.php'>Neuen account erstellen...</a>";
-}
-
-?>
+		<div id="wrap_top">
+			<?php include "top.php";?>
+		</div>
+			
+        <div id="wrapper">
+            <div id="banner">
+                <?php include "banner.php";?>            
+            </div>
+            <div id="content">
+				<?php
+                    // define a section value
+                    if(isset($_GET['section']))
+                        $section = $_GET['section'];
+                    else
+                        $section ='default';
+                    
+                    include "userContent.php";
+                ?>
+            </div>
+       </div>
+		<div id="wrap_footer">
+			<div id="footer">
+				<?php include "footer.php";?>
+			</div>
+		</div>
+    </body>
+</html>

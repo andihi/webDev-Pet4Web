@@ -6,11 +6,13 @@
 		<li><a href="index.php?section=product">Produkte</a></li>
 		<li><a href="index.php?section=category">Kategorien</a></li>
 		<?php 
-			if (isUserLoggedIn())	{// wenn user eingeloggt
+			if (isUserLoggedIn())
+            {   // wenn user eingeloggt
 				echo '<li><a href="index.php?section=cart">Warenkorb</a></li>';
-				echo '<li><a href="index.php?section=logout">Logout</a></li>';
-			} else 
-				echo '<li><a href="index.php?section=user">Login</a></li>';
+				echo '<li><a href="user.php?section=logout">Logout</a></li>';
+			}
+            else
+                echo '<li><a href="user.php?section=logIn">Login</a></li>';
 		?>	
 		
 		<?php /* wenn admin eingeloggt
