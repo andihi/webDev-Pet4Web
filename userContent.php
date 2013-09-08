@@ -41,7 +41,48 @@ function changeUserSettings()
 
 function tryToChangeUserSettings()
 {
+    if(!isUserLoggedIn())
+    {
+        header("Location: ./index.php");
+        exit;
+    }   
     
+    if(!isset($_POST['password1']) || !isset($_POST['password2']) )
+    {
+        var_dump($_POST);
+        passwordNotChangedMessage('Es wurden nicht beide Passwörter eingegeben!');
+        return;
+    }
+    
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+    
+    if($password1 != $password2)
+    {
+        passwordNotChangedMessage('Die eingegebenen Passwörter stimmen nicht überein.');
+        return;
+    }
+    
+    if(strlen($password1) <3) // Dieser Fehlerfall wird nur am server aufgefangen
+    {
+        passwordNotChangedMessage("Das Passwort solle midestens 3 Zeichen lang sein.");
+        return;
+    }    
+    
+    changePassword($_SESSION['email'],$password1);    
+}
+
+function passwordNotChangedMessage($reason)
+{
+    if(isset($reason))
+        printf( "<center>
+                <h1 class=\"warning\">Ihr Passwort wurde nicht geändert! </br>%s</h1>
+            </center>",$reason);
+    else
+        printf( "<center>
+                <h1 class=\"warning\">Ihr Passwort wurde nicht geändert!</h1>
+            </center>");
+        
 }
 
 /*

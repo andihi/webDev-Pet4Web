@@ -32,6 +32,15 @@ function logIn($email, $password)
     mysql_close($connection);    
 }
 
+function changePassword($email,$password)
+{    
+    $connection = createDbConnection();    
+    $sqlQuery =sprintf("UPDATE customer SET password ='%s' where email='%s'",mysql_real_escape_string(md5($password)),mysql_real_escape_string($email));    
+    mysql_query($sqlQuery, $connection);
+    
+    mysql_close($connection);        
+}
+
 function destroySession()
 {
     $_SESSION = array();

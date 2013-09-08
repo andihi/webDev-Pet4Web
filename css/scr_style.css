@@ -103,3 +103,7 @@ form section div input {
 .wrongInput {
     border: 1px solid red;
 }
+
+h1.warning {
+    color: #DF0101;
+}
