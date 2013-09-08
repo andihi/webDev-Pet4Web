@@ -11,6 +11,6 @@
 		</div>
 	</section>
 	
-	<input type="submit" value=" log in " />
+	<input id="submit" type="submit" value="log in" />
 	<a href="user.php?section=createNewUser">Neuen account erstellen...</a>
 </form> 

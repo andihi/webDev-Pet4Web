@@ -27,5 +27,5 @@
 		</div>
 	</section>
 	
-	<input type="submit" value=" change settings " />
+	<input type="submit" value="change settings" id="submit" />
 </form> 

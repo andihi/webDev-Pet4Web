@@ -15,8 +15,11 @@
 		<div id="wrap_top">
         <?php include "top.php";?>
 		</div>
-			
-        <div id="wrapper">            
+       
+        <div id="wrapper">      
+            <div id="banner">
+                <?php include "banner.php";?>            
+            </div>
             <div id="content">
 				<?php
                 // define a section value
