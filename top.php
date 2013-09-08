@@ -10,6 +10,9 @@
             {   // wenn user eingeloggt
 				echo '<li><a href="index.php?section=cart">Warenkorb</a></li>';
 				echo '<li><a href="user.php?section=logout">Logout</a></li>';
+                
+                if(isUserAdmin())
+                    echo '<li><a href="productAdmin.php">Produktadministration</a></li>';
 			}
             else
                 echo '<li><a href="user.php?section=logIn">Login</a></li>';

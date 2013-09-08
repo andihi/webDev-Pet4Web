@@ -3,7 +3,7 @@
 function logIn($email, $password)
 {
     $connection = createDbConnection();    
-    $sqlQuery =sprintf("SELECT id, firstname, lastname, email FROM customer where email='%s' and password ='%s'",mysql_real_escape_string($email),mysql_real_escape_string(md5($password)));    
+    $sqlQuery =sprintf("SELECT id, firstname, lastname, email, isAdmin FROM customer where email='%s' and password ='%s'",mysql_real_escape_string($email),mysql_real_escape_string(md5($password)));    
     $result = mysql_query($sqlQuery, $connection);
     
     if (!$result)
@@ -24,7 +24,8 @@ function logIn($email, $password)
     $_SESSION['firstname'] = $userInfo['firstname'];
     $_SESSION['lastname'] = $userInfo['lastname'];
     $_SESSION['email'] = $userInfo['email'];
-    $_SESSION['id'] = $userInfo['id'];    
+    $_SESSION['id'] = $userInfo['id'];   
+    $_SESSION['isAdmin'] = $userInfo['isAdmin'];
     
     //echo '<div>Vorname: $userinfo['."'firstname']</div>"
     //print("<div>Vorname: $_SESSION['firstname']</div>");
@@ -72,6 +73,11 @@ function isUserLoggedIn()
     return isset($_SESSION['id']);
 }
 
+function isUserAdmin()
+{    
+    return isUserLoggedIn() && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];
+}
+
 function createDbConnection()
 {
     $connection = mysql_connect("127.0.0.1:3306","pet4web","pet4web");
@@ -85,6 +91,23 @@ function createDbConnection()
     return $connection;
     // please close connection after usage like:
     // mysql_close($connetion);
+}
+
+function getProducts()
+{
+    
+    $connection = createDbConnection();
+    $sqlQuery = "SELECT ID, name, description, picture, price, productcode, category_id FROM product";
+    $result = mysql_query($sqlQuery,$connection);
+    
+    $products = array(); 
+    $count=0;
+    while($row = mysql_fetch_array($result))
+        $products[$count++]= $row;
+        
+    mysql_free_result($result);      
+    
+    mysql_close($connection);
 }
 
 ?>
