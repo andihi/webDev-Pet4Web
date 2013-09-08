@@ -8,7 +8,7 @@
 		<?php 
 			if (isUserLoggedIn())
             {   // wenn user eingeloggt
-				echo '<li><a href="index.php?section=cart">Warenkorb</a></li>';
+				echo '<li><a href="userCart.php">Warenkorb</a></li>';
 				echo '<li><a href="user.php?section=logout">Logout</a></li>';
                 
                 if(isUserAdmin())

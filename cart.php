@@ -34,7 +34,7 @@
         $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
         $message .= 'Gesamte Abfrage: ' . $sqlQuery;
         die($message);
-    }	
+    }	   
 	
 	while($row = mysql_fetch_array($result))	{
 		echo '<p id="warenkorb">';
@@ -44,7 +44,7 @@
 	}
 		
 	// TODO form to clear cart
-	echo '<input type="button" value="Zur Kasse gehen" />';
+	echo '<input class="command" type="button" value="Zur Kasse gehen" />';
     mysql_free_result($result);
     mysql_close($connection); 
 

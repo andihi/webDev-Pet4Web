@@ -12,5 +12,5 @@
 	</section>
 	
 	<input id="submit" type="submit" value="log in" />
-	<a href="user.php?section=createNewUser">Neuen account erstellen...</a>
+	<a class="command" href="user.php?section=createNewUser">Neuen account erstellen...</a>
 </form> 

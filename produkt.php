@@ -51,7 +51,7 @@
 			echo $row['cat_name'].'<br />';
 			if (isUserLoggedIn())
 			{
-				echo '<a href="index.php?section=cart&id='.$row['ID'].'">kaufen</a><br />';
+				echo '<a href="userCart.php?section=tryToAddProduct&id='.$row['ID'].'">kaufen</a><br />';
 			}
 			echo '</p>';
 		}

@@ -18,14 +18,3 @@
         
             }
 </script>
-<form onsubmit="return checkPassword();" id="changeSettingsForm" action="./user.php?section=tryToChangeSettings" method="post">
-	<section>		
-		<div id="passwordContainer">
-			<label for="password1" >Neues Passwort eingeben</label>
-			<input id="password1" type="password" name="password1"  />
-            <input id="password2" type="password" name="password2"  />
-		</div>
-	</section>
-	
-	<input type="submit" value="change settings" id="submit" />
-</form> 

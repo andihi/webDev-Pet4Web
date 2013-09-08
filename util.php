@@ -33,13 +33,20 @@ function logIn($email, $password)
     mysql_close($connection);    
 }
 
-function changePassword($email,$password)
-{    
-    $connection = createDbConnection();    
+function changePassword($email,$password, $connection= null)
+{
+    $isMyOwnConnection =true;
+    if(!isset($connection))
+    {
+        $isMyOwnConnection = false;
+        $connection = createDbConnection();
+    }
+    
     $sqlQuery =sprintf("UPDATE customer SET password ='%s' where email='%s'",mysql_real_escape_string(md5($password)),mysql_real_escape_string($email));    
     mysql_query($sqlQuery, $connection);
     
-    mysql_close($connection);        
+    if($isMyOwnConnection)
+        mysql_close($connection);        
 }
 
 function destroySession()
@@ -91,6 +98,14 @@ function createDbConnection()
     return $connection;
     // please close connection after usage like:
     // mysql_close($connetion);
+}
+
+function getP($name)
+{
+    if(isset($_POST[$name]))
+        return $_POST[$name];
+    else
+        return null;
 }
 
 ?>

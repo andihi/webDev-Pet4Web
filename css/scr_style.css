@@ -124,7 +124,7 @@ p {
     margin-top:20px;
 }
 
-#submit, #reset {
+#submit, #reset, .command {
     margin-top:15px;
     margin-right:5px;
     background-color: #bfd841;
@@ -140,7 +140,7 @@ p {
     /*float:left;*/
 }
 
-#submit:hover, #reset:hover {
+#submit:hover, #reset:hover, .command:hover {
     border: none;
     background:#2B79A1;
     color:#bfd841;
@@ -150,4 +150,9 @@ p {
 #buttonContent {
     float:none;
     display:inline;
+}
+legend {
+    color:#2B79A1;
+    margin: 0px 5px 3px 5px;
+    font-size:18px;
 }

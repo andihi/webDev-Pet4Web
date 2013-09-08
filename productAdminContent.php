@@ -212,14 +212,6 @@ function getId()
     
 }
 
-function getP($name)
-{
-    if(isset($_POST[$name]))
-        return $_POST[$name];
-    else
-        return null;
-}
-
 function getProduct($id)
 {
     $connection = createDbConnection();
