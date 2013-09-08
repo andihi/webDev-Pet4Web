@@ -16,10 +16,7 @@
         <?php include "top.php";?>
 		</div>
 			
-        <div id="wrapper">
-            <div id="banner">
-                <?php include "banner.php";?>            
-            </div>
+        <div id="wrapper">            
             <div id="content">
 				<?php
                 // define a section value

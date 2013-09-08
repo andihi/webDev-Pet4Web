@@ -93,21 +93,4 @@ function createDbConnection()
     // mysql_close($connetion);
 }
 
-function getProducts()
-{
-    
-    $connection = createDbConnection();
-    $sqlQuery = "SELECT ID, name, description, picture, price, productcode, category_id FROM product";
-    $result = mysql_query($sqlQuery,$connection);
-    
-    $products = array(); 
-    $count=0;
-    while($row = mysql_fetch_array($result))
-        $products[$count++]= $row;
-        
-    mysql_free_result($result);      
-    
-    mysql_close($connection);
-}
-
 ?>

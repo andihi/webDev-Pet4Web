@@ -107,3 +107,11 @@ form section div input {
 h1.warning {
     color: #DF0101;
 }
+
+a.command {
+    margin-left: 10px;
+    color: #B40404;
+}
+p {
+    margin-top:20px;
+}
