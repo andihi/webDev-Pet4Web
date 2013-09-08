@@ -38,12 +38,13 @@
 
 #wrap_footer	{
 	border-top: 1px solid #aaa;
-	background-color: #fff;
+	background-color: #fff;    
 }
 	
 #footer	{
 	width: 960px;	
 	margin: 20px auto;
+    
 }
 
 #user	{

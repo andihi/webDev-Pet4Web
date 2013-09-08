@@ -6,6 +6,67 @@
 
 function createProduct()
 {
+    showNewProductForm();
+}
+
+function tryToCreateProduct()
+{
+    $name = getP('productName');
+    $descr = getP('productDescription');
+    $price = getP('productPrice');
+    $code = getP('productCode');
+    $cat = intval(getP('category'));
+    
+    $connection = createDbConnection();
+    
+    $sqlCommand = sprintf("INSERT INTO product(name, description, productcode, price, category_ID)
+    VALUES('%s','%s', '%s', %f, %d)",mysql_real_escape_string($name),mysql_real_escape_string($descr),mysql_real_escape_string($code),$price,$cat);
+    
+    mysql_query($sqlCommand,$connection);    
+    mysql_close($connection);
+    showAllProducts();
+}
+
+function showNewProductForm()
+{
+    echo '<form id="newProductForm" action="./productAdmin.php?section=tryToCreateProduct" method="post">    
+	<section>				
+        <div>
+			<label for="productName" >Produktname</label>
+            <input id="productName" type="text" name="productName" value="" maxlength="50"  />
+        </div>
+        <div>
+            <label for="productDescription" >Beschreibung</label>
+            <textarea id="productDescription" type=text cols="90" rows="20"  name="productDescription"></textarea>
+        </div>
+        <div>
+            <label for="productPrice" >Preis</label>
+            <input id="productPrice" type="text" name="productPrice" value="" />
+        </div>
+        <div>            
+            <label for="productCode" >Produktcode</label>
+            <input id="productCode" type="text" name="productCode" value="" maxlength="50" />
+        </div>
+        <div>
+            <label for="category">Kategorie</label>
+            <select name="category">';
+    $categories = getCategories();
+    $catCount = count($categories);
+    
+    for($i=0;$i<$catCount;$i++)
+    {
+        $cat = $categories[$i];        
+        echo '<option value="'.$cat['ID'].'">'.$cat['name'].'</option>';
+    }
+    
+    echo '  </select>
+        </div>		
+	</section>
+    <div id="buttonContent">
+	<input type="submit" name="submit" id="submit" value="Neues Produkt anlegen" />
+    <input type="reset" name="reset" id="reset" value="Inhalt löschen" />
+    </div>
+</form>';
 }
 
 function updateProduct()
@@ -29,7 +90,7 @@ function showProductForUpdate($product)
 	<section>				
         <div>
 			<label for="productName" >Produktname</label>
-            <input id="productName" type="text" name="productName" value="'.$product['name'].'"  />
+            <input maxlength="50" id="productName" type="text" name="productName" value="'.$product['name'].'"  />
         </div>
         <div>
             <label for="productDescription" >Beschreibung</label>
@@ -41,7 +102,7 @@ function showProductForUpdate($product)
         </div>
         <div>            
             <label for="productCode" >Produktcode</label>
-            <input id="productCode" type="text" name="productCode" value="'.$product['productcode'].'" />
+            <input id="productCode" type="text" maxlength="50" name="productCode" value="'.$product['productcode'].'" />
         </div>
         <div>
             <label for="category">Kategorie</label>
@@ -61,7 +122,7 @@ function showProductForUpdate($product)
     echo '  </select>
         </div>		
 	</section>	
-	<input type="submit" name="submit" id="submit" value="change settings" />
+	<input type="submit" name="submit" id="submit" value="Produkt ändern" />
 </form>';
 }
 
@@ -112,6 +173,7 @@ function tryToDeleteProduct()
 
 function showAllProducts()
 {
+    echo '<a class="command" href="./productAdmin.php?section=createProduct">Neues Produkt anlegen...</a>';
     $products =  getProducts();
     
     $count = count($products);
@@ -131,7 +193,10 @@ function printProduct($product,$count)
     echo $product['productcode'].'<br />';
     echo $product['cat_name'].'<br />';
     
-    echo '<div><a class="command" href="./productAdmin.php?section=tryToDelete&id='.$id.'">löschen</a> <a class="command" href="./productAdmin.php?section=update&id='.$id.'">bearbeiten</a></div>';
+    echo '<div>
+        <a class="command" href="./productAdmin.php?section=tryToDelete&id='.$id.'">löschen</a>
+        <a class="command" href="./productAdmin.php?section=update&id='.$id.'">bearbeiten...</a>        
+        </div>';
     
     echo '</p>';
 }
@@ -236,8 +301,11 @@ if(!isset($section) || !isUserAdmin())
 
 switch($section)
 {
-    case 'create':
-        // createProduct
+    case 'createProduct':
+        createProduct();
+        break;
+    case 'tryToCreateProduct':
+        tryToCreateProduct();
         break;
     case 'update':
         updateProduct();
