@@ -186,15 +186,15 @@ function tryToChangeUserSettings()
         return;
     }    
     $connection = createDbConnection();        
-    $r = mysql_query(sprintf("SELECT count(*) FROM customer WHERE email ='%s'",mysql_real_escape_string($email)),$connection);
-    $count = intval(mysql_result($r,0));
+    // $r = mysql_query(sprintf("SELECT count(*) FROM customer WHERE email ='%s'",mysql_real_escape_string($email)),$connection);
+    // $count = intval(mysql_result($r,0));
     
-    if($count > 0)
-    {
-        invalidInput("Ein Account mit der E-Mail $email ist bereits vorhanden.");
-        mysql_close($connection);
-        return;
-    }
+    // if($count > 0)
+    // {
+    //     invalidInput("Ein Account mit der E-Mail $email ist bereits vorhanden.");
+    //     mysql_close($connection);
+    //     return;
+    // }
     
     mysql_query(sprintf("UPDATE customer SET
     firstname='%s', lastname='%s', email='%s' WHERE ID =%d",mysql_real_escape_string($firstname),mysql_real_escape_string($surename),mysql_real_escape_string($email),$_SESSION['id']),$connection);
